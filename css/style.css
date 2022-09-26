@@ -1,0 +1,33 @@
+input, select, button {
+    height: 25px!important;
+}
+
+select{
+    width: 150px;
+}
+
+#container {
+	width: 600px;
+	height: 500px;
+	overflow:hidden;
+}
+
+#editSection {
+    display: flex;
+}
+
+#editSection div {
+    width: 50%;
+    height: 100px;
+    border:1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: auto;
+}
+
+#categorySection{
+    height: 365px;
+    border:1px solid black;
+    overflow: auto!important;
+}
