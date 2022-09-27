@@ -25,14 +25,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 let url = JSON.parse(itemsSaved[index]).url;
                 let title = JSON.parse(itemsSaved[index]).title;
                 let id = JSON.parse(itemsSaved[index]).id;
-                document.getElementById(cat).innerHTML +=`<p><a href="${url}" target="_blank">${title}</a> - <button class="delete" id="${id}">X</button<p>`;
+                // document.getElementById(cat).innerHTML +=`<p><a href="${url}" target="_blank">${title}</a> - <span class="icon icon-deactivated" id="${id}"></span><p>`;
+                document.getElementById(cat).innerHTML +=`<div class="app-card"><a class="link link-primary" href="${url}" target="_blank">${title}</a><span class="icon icon-deactivated" id="${id}"></span></div>`;
+                
 
-                //document.getElementById(id).addEventListener("click", delFunction);
-
-                let btns = document.querySelectorAll('.delete');
+                let btns = document.querySelectorAll('.icon-deactivated');
 
                 for (i of btns) {
-                i.addEventListener('click', delFunction);
+                    i.addEventListener('click', delFunction);
                 }
 
             }
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         var obj = new Object();
         obj.cat = selectedCategory;
-        obj.title  = document.getElementById("title").value;
+        obj.title  = document.getElementById("title").value.replace(/, Online Whiteboard for Visual Collaboration/g, "");
         obj.url = localStorage.getItem("currentTabUrl");
         obj.id = id;
         var jsonString= JSON.stringify(obj);
@@ -127,33 +127,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
         showCategories();
      });
 
-     /* chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-
-        // since only one tab should be active and in the current window at once
-        // the return variable should only have one entry
-        var activeTab = tabs[0];
-        var activeTabUrl = activeTab.url;
-        var activeTabTitle = activeTab.title;
-
-        
-        var url = activeTabUrl;
-
-        var testUrl = 'miro.com';
-
-        document.getElementById("title").value = activeTabTitle;
-
-               
-
-        var fail = document.getElementById("fail");
-        var success = document.getElementById("contentSection");
-        
-        if(url.indexOf(testUrl) === -1) {
-            fail.style.display = "block";
-            success.style.display = "none";
-        } else {
-            localStorage.setItem("currentTabUrl", activeTabUrl); 
-            showCategories();
-        }
-     }); */
-     
 });

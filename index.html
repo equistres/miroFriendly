@@ -5,6 +5,7 @@
   <title></title>
   <link href="css/style.css" rel="stylesheet" />
   <script src="js/background.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/mirotone@4.x/dist/styles.css">
 </head>
 <body>
     <div id="container">
@@ -16,13 +17,16 @@
             Miro a Guardar > <input id="title" style="width:400px!important"></input>
             <div id="editSection">
                 <div>
-                    <input id="newcat"></input><br/>
-                    <button id="create">Crear Categoria</button>
+                    <input class="input" type="text" placeholder="Categoria" id="newcat"/>
+                    <button class="button button-primary button-small" type="button" id="create">
+                        Crear Categoria
+                    </button>
                 </div>
-            
                 <div>
-                    <select name="categorias" id="categorias" style="display: none;"></select><br/>
-                    <button id="add">Agregar a Categoria</button>
+                    <select class="select" id="categorias"></select> 
+                    <button class="button button-primary button-small" type="button" id="add">
+                        Agregar a Categoria
+                    </button>
                 </div>
             </div>
             <div id="categorySection">
