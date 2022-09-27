@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
             Object.keys(items).forEach(function(key){
                 dropdown.appendChild(new Option(items[key], items[key]));
-                document.getElementById("categorySection").innerHTML +=`<div id="${items[key]}"><h3>${items[key]}</h3></div>`;
+                document.getElementById("categorySection").innerHTML +=`<div id="${items[key]}"><div class="title"><h3>${items[key]}</h3><span class="icon icon-eye-closed"></span></div></div>`;
             });
 
             fillCategories();

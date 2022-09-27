@@ -2,6 +2,17 @@
     width: 249px!important;
     height: 43px!important;
 }
+.icon-eye-closed{
+    color: firebrick;
+}
+.title {
+    display: flex;
+    background-color: rgba(225, 224, 231, 1);
+    height: 29px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
 body{
     background-color: #f2f3f3;
 }
@@ -47,9 +58,6 @@ body{
 }
 
 div h3{
-    /* background-color: #4262ff; */
-    background-color: rgba(5, 0, 56, 1);;
-    color: #ffffff;
     height: 25px;
     display: flex;
     justify-content: space-evenly;
