@@ -1,7 +1,31 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
+
+    const hideFn = (e) =>{
+
+        if(e.target.classList.contains("icon-arrow-down")){
+
+            e.target.parentElement.parentElement.querySelectorAll("div.app-card").forEach((el) => {
+                el.classList.add('hide');
+            });
+
+            e.target.classList.add("icon-arrow-up")
+            e.target.classList.remove("icon-arrow-down");
+
+        } else {
+
+            e.target.parentElement.parentElement.querySelectorAll("div.app-card").forEach((el) => {
+                el.classList.remove('hide');
+            });
+
+            e.target.classList.add("icon-arrow-down")
+            e.target.classList.remove("icon-arrow-up");
+
+        }
+
+    }
     
-    const delFunction = (e) => {
+    const delFn = (e) => {
         let id = e.target.id;
 
         let itemsSaved = JSON.parse(localStorage.getItem("itemsSaved"));
@@ -25,15 +49,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 let url = JSON.parse(itemsSaved[index]).url;
                 let title = JSON.parse(itemsSaved[index]).title;
                 let id = JSON.parse(itemsSaved[index]).id;
-                // document.getElementById(cat).innerHTML +=`<p><a href="${url}" target="_blank">${title}</a> - <span class="icon icon-deactivated" id="${id}"></span><p>`;
                 document.getElementById(cat).innerHTML +=`<div class="app-card"><a class="link link-primary" href="${url}" target="_blank">${title}</a><span class="icon icon-deactivated" id="${id}"></span></div>`;
-                
 
-                let btns = document.querySelectorAll('.icon-deactivated');
+                document.querySelectorAll(".icon-deactivated").forEach((el) => {
+                    el.addEventListener('click', delFn);
+                });
 
-                for (i of btns) {
-                    i.addEventListener('click', delFunction);
-                }
+                document.querySelectorAll(".icon-arrow-down").forEach((el) => {
+                    el.addEventListener('click', hideFn);
+                });
 
             }
         }
@@ -53,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
             Object.keys(items).forEach(function(key){
                 dropdown.appendChild(new Option(items[key], items[key]));
-                document.getElementById("categorySection").innerHTML +=`<div id="${items[key]}"><div class="title"><h3>${items[key]}</h3><span class="icon icon-eye-closed"></span></div></div>`;
+                document.getElementById("categorySection").innerHTML +=`<div id="${items[key]}"><div class="title"><h3>${items[key]}</h3><span class="icon icon-arrow-down"></span></div></div>`;
             });
 
             fillCategories();
@@ -95,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         var obj = new Object();
         obj.cat = selectedCategory;
-        obj.title  = document.getElementById("title").value.replace(/, Online Whiteboard for Visual Collaboration/g, "");
+        obj.title  = localStorage.getItem('title').replace(/, Online Whiteboard for Visual Collaboration/g, "");
         obj.url = localStorage.getItem("currentTabUrl");
         obj.id = id;
         var jsonString= JSON.stringify(obj);
@@ -116,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var url = activeTabUrl;
         var testUrl = 'miro.com';
 
-        document.getElementById("title").value = activeTabTitle;
+        localStorage.setItem('title', JSON.stringify(activeTabTitle));
         
         var addItem = document.getElementById("add");
         
